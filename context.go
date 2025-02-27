@@ -14,7 +14,7 @@ type Context struct {
 	Action     string
 }
 
-func (c *Context) JSON(data interface{}, status ...int) error {
+func (c *Context) JSONResponse(data interface{}, status ...int) error {
 	if len(status) == 0 {
 		status = append(status, http.StatusOK)
 	}
@@ -24,13 +24,11 @@ func (c *Context) JSON(data interface{}, status ...int) error {
 func (c *Context) JSONError(err error, status ...int) error {
 	var e *errs.Error
 	if errors.As(err, &e) {
-		c.JSON(e, e.Code)
-		return nil
+		return c.JSON(e.Code, e)
 	}
 
 	if len(status) == 0 {
 		status = append(status, http.StatusInternalServerError)
 	}
-	c.JSON(errs.NewError(status[0], err.Error()), status[0])
-	return nil
+	return c.JSON(status[0], errs.NewError(status[0], err.Error()))
 }
