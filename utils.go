@@ -56,3 +56,7 @@ func (u *Utils) SetLogLevel(logLevel string) {
 	}
 	u.logLevel.Set(level)
 }
+
+func (u *Utils) SetHandler(handler slog.Handler) {
+	u.Log = slog.New(handler)
+}
