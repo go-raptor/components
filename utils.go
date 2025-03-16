@@ -14,7 +14,7 @@ type Utils struct {
 	Config *config.Config
 
 	Log      *slog.Logger
-	logLevel *slog.LevelVar
+	LogLevel *slog.LevelVar
 
 	DB connector.DatabaseConnector
 }
@@ -28,7 +28,7 @@ func NewUtils() *Utils {
 
 	return &Utils{
 		Log:      slog.New(tinter.NewHandler(os.Stderr, opts)),
-		logLevel: levelVar,
+		LogLevel: levelVar,
 	}
 }
 
@@ -54,7 +54,7 @@ func (u *Utils) SetLogLevel(logLevel string) {
 	default:
 		level = slog.LevelInfo
 	}
-	u.logLevel.Set(level)
+	u.LogLevel.Set(level)
 }
 
 func (u *Utils) SetHandler(handler slog.Handler) {
