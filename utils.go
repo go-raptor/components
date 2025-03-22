@@ -41,6 +41,14 @@ func (u *Utils) SetConfig(config *config.Config) {
 }
 
 func (u *Utils) SetLogLevel(logLevel string) {
+	u.LogLevel.Set(ParseLogLevel(logLevel))
+}
+
+func (u *Utils) SetHandler(handler slog.Handler) {
+	u.Log = slog.New(handler)
+}
+
+func ParseLogLevel(logLevel string) slog.Level {
 	var level slog.Level
 	switch strings.ToUpper(logLevel) {
 	case "DEBUG":
@@ -54,9 +62,5 @@ func (u *Utils) SetLogLevel(logLevel string) {
 	default:
 		level = slog.LevelInfo
 	}
-	u.LogLevel.Set(level)
-}
-
-func (u *Utils) SetHandler(handler slog.Handler) {
-	u.Log = slog.New(handler)
+	return level
 }
