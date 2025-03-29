@@ -4,11 +4,13 @@ type Services []ServiceInterface
 
 type ServiceInterface interface {
 	InitService(u *Utils) error
+	ShutdownService() error
 }
 
 type Service struct {
 	*Utils
-	onInit func() error
+	onInit     func() error
+	onShutdown func() error
 }
 
 func (s *Service) InitService(utils *Utils) error {
@@ -19,6 +21,17 @@ func (s *Service) InitService(utils *Utils) error {
 	return nil
 }
 
+func (s *Service) ShutdownService() error {
+	if s.onShutdown != nil {
+		return s.onShutdown()
+	}
+	return nil
+}
+
 func (s *Service) OnInit(callback func() error) {
 	s.onInit = callback
+}
+
+func (s *Service) OnShutdown(callback func() error) {
+	s.onShutdown = callback
 }
