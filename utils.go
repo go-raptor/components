@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"github.com/go-raptor/config"
-	"github.com/go-raptor/connector"
+	"github.com/go-raptor/connectors"
 	"github.com/pwntr/tinter"
 )
 
@@ -16,7 +16,7 @@ type Utils struct {
 	Log      *slog.Logger
 	LogLevel *slog.LevelVar
 
-	DB connector.DatabaseConnector
+	DB connectors.DatabaseConnector
 }
 
 func NewUtils() *Utils {
@@ -32,7 +32,7 @@ func NewUtils() *Utils {
 	}
 }
 
-func (u *Utils) SetDB(db connector.DatabaseConnector) {
+func (u *Utils) SetDB(db connectors.DatabaseConnector) {
 	u.DB = db
 }
 
