@@ -11,7 +11,7 @@ type Middlewares []ScopedMiddleware
 
 type MiddlewareInterface interface {
 	InitMiddleware(u *Utils)
-	New(c *Context, next func(*Context) error) error
+	New(c ContextInterface, next func(ContextInterface) error) error
 }
 
 type Middleware struct {
