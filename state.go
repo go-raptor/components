@@ -10,6 +10,7 @@ import (
 type State interface {
 	// Echo context functions
 	Request() *http.Request
+	ResponseWriter() http.ResponseWriter
 	SetRequest(r *http.Request)
 	IsTLS() bool
 	IsWebSocket() bool
