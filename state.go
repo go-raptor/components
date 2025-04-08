@@ -7,7 +7,7 @@ import (
 	"net/url"
 )
 
-type ContextInterface interface {
+type State interface {
 	// Echo context functions
 	Request() *http.Request
 	SetRequest(r *http.Request)

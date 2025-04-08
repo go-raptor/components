@@ -1,8 +1,8 @@
 package components
 
-type Services []ServiceInterface
+type Services []ServiceProvider
 
-type ServiceInterface interface {
+type ServiceProvider interface {
 	InitService(u *Utils) error
 	ShutdownService() error
 }

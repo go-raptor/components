@@ -1,7 +1,7 @@
 package components
 
 type ScopedMiddleware struct {
-	Middleware MiddlewareInterface
+	Middleware MiddlewareProvider
 	Only       []string
 	Except     []string
 	Global     bool
@@ -9,9 +9,9 @@ type ScopedMiddleware struct {
 
 type Middlewares []ScopedMiddleware
 
-type MiddlewareInterface interface {
+type MiddlewareProvider interface {
 	InitMiddleware(u *Utils)
-	New(c ContextInterface, next func(ContextInterface) error) error
+	New(c State, next func(State) error) error
 }
 
 type Middleware struct {

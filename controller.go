@@ -1,8 +1,8 @@
 package components
 
-type Controllers []interface{}
+type Controllers []ControllerProvider
 
-type ControllerInterface interface {
+type ControllerProvider interface {
 	Init(u *Utils)
 }
 
