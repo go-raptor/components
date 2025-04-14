@@ -61,7 +61,6 @@ type State interface {
 
 	// Raptor context functions
 	JSONResponse(data interface{}, status ...int) error
-	JSONError(err error, status ...int) error
 
 	Controller() string
 	Action() string
